@@ -10,7 +10,7 @@ db = connect_to_mongodb()
 # Create Students
 async def create_student(student: Student):
     response = db.students.insert_one(student.model_dump())
-    return {"id": str(response._id)}
+    return {"id": str(response.inserted_id)}
 
 # List students
 async def list_students():
