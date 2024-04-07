@@ -1,8 +1,12 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # MongoDB Atlas connection string
 # Replace "your_connection_string" with your actual connection string
-MONGO_CONNECTION_STRING = "mongodb+srv://madhavaarul:0jKfhwifGWr2jGXL@clusterstudents.lrov3tn.mongodb.net/?retryWrites=true&w=majority&appName=ClusterStudents"
+MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")
+
 
 # Function to connect to MongoDB
 def connect_to_mongodb():
@@ -13,6 +17,7 @@ def connect_to_mongodb():
         db = client.student
         # Return the database object
         print("Connected to MongoDB")
+        print(MONGO_CONNECTION_STRING)
         return db
     except Exception as e:
         print(f"Error connecting to MongoDB: {e}")
